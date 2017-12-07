@@ -1,0 +1,232 @@
+<div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Idées<small></small>
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li class="active">
+                                <a><i class="fa fa-fw fa-sun-o"></i> Idées</a>
+                            </li>
+                            <li class="active">
+                                <a>Idées Proposées</a>
+                            </li>
+                            <li class="active">
+                                {{idea.proposition.titre_prop}}
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                
+<div class="row">
+            <div class="col-lg-12">
+
+                <div class="">
+                    <img *ngIf="idea.proposition.photo" class="img-responsive size" src='images/idea/{{idea.proposition.photo}}' alt=""  >
+                    <img *ngIf="!idea.proposition.photo" class="img-responsive" src="images/idea/idea.jpg" alt="" >
+                    <div *ngFor="let description of descriptions">
+                    
+                    </div>
+                    <div class="caption-full">
+                        <div class="pull-right" *ngIf="currentUser.login != idea.proprietaire.userfk"> <button id="rejoindre" (click)="joinIdea()" type="button" class="btn btn-success" value="rejoindre">Rejoindre</button> <button id="follow" (click)="followIdea()" type="button" class="btn btn-success" value="rejoindre">S'Abonner</button> </div>
+                        <h1><a >{{idea.proposition.titre_prop}}</a>
+                        </h1>
+                        <p>Proposée par  <a target="_blank" [routerLink]="['/etudiant',idea.proprietaire.userfk]">{{idea.proprietaire.nom}} {{idea.proprietaire.prenom}}</a>.</p>
+                        <p>Créée le <a>{{idea.proposition.createdAt | date: 'dd/MM/yyyy'}}</a></p>
+                        <p>Want to make these reviews work? Check out
+                            <strong><a href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">this building a review system tutorial</a>
+                            </strong>over at maxoffsky.com!</p>
+                        <div *ngFor="let description of descriptions">
+
+                            <h4><b>{{description.titre_des}}</b></h4>
+                            <p>{{description.text}}</p>
+                        </div>
+                    </div>
+                    <div class="ratings">
+                        <p class="pull-right">{{idea.nombrenote}} notes</p>
+                        <p id="rating">
+                            
+                        </p>
+                    </div>
+                </div>
+            </div>
+       
+
+ 
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Basic Tabs
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#notes" data-toggle="tab">Notes</a>
+                                </li>
+                                <li><a href="#commentaires" data-toggle="tab">Commentaires</a>
+                                </li>
+                                <li><a href="#equipe" data-toggle="tab">Equipe</a>
+                                </li>
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div class="tab-pane fade in active" id="notes">
+             <hr>
+                <div class="media" *ngFor="let note of notes">
+                    <a class="pull-left" [routerLink]="['/enseignant',note.enseignant.userfk]">
+                        <img class="media-object" src="images/community/{{note.enseignant.photo}}" alt="" width="60" height="60">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a [routerLink]="['/enseignant',note.enseignant.userfk]"> {{note.enseignant.nom}} {{note.enseignant.prenom}}</a>
+                            <small class="pull-right">{{note.note.createdAt | amTimeAgo:true}}</small>
+                        </h4>
+                        <div class="pull-right">
+                            <div class="ratings">
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            </div>
+                        </div>
+                            <div class="row show-grid">
+                                <div class="col-md-2">Creativité : {{note.note.creativite}}</div>
+                                <div class="col-md-2">Originalité : {{note.note.originalite}}</div>
+                                <div class="col-md-2">Rentabilité : {{note.note.rentabilite}}</div>
+                            </div>
+                    </div>
+                </div>
+                <hr>
+
+                    
+
+
+                <!--<div  class="col-md-12">
+                    <div *ngFor="let note of notes" class="row">
+        Creativité : {{note.note.creativite}}  Originalité : {{note.note.originalite}}   Rentabilité : {{note.note.rentabilite}}
+                        
+                            
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            <a>{{note.enseignant.nom}} {{note.enseignant.prenom}}</a>
+                            <span class="pull-right">{{note.note.createdAt | amTimeAgo:true}}</span>
+                            <p>Creativité : {{note.note.creativite}}</p>
+                            <p>Originalité : {{note.note.originalite}}</p>
+                            <p>Rentabilité : {{note.note.rentabilite}}</p>
+                            <div class="pull-right" *ngIf="currentUser.as == 'enseignant' && currentUser.data.id == note.enseignant.id"> <button  type="button" class="btn btn-success" value="rejoindre">modifier</button> </div>
+                        </div>
+                        <hr>
+                    </div>             -->
+                                        
+                        <form *ngIf="currentUser.as == 'enseignant'">
+                            creativite : <select [(ngModel)] = "creativite" name="creativite">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+                originalite : <select [(ngModel)] = "originalite" name="originalite">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+                rentabilite : <select [(ngModel)] = "rentabilite" name="rentabilite">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+                        </form>
+                    <div *ngIf="currentUser.as == 'enseignant'" class="text-right">
+                        <a (click)="addNote()" class=" btn btn-success">Noter cette idée</a>
+                                        </div>
+                </div>
+             <div class="tab-pane fade" id="commentaires" *ngIf="comments">
+                <hr>
+                <div class="media" *ngFor ="let comment of comments">
+                    <a class="pull-left" [routerLink]="['/etudiant',comment.user.userfk]">
+                        <img class="media-object" src="images/community/{{comment.user.photo}}" alt="" width="60" height="60">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a [routerLink]="['/etudiant',comment.user.userfk]"> {{comment.user.nom}} {{comment.user.prenom}}</a>
+                            <small class="pull-right">{{comment.coment.createdAt | amTimeAgo:true}}</small>
+                        </h4>
+                        {{comment.coment.comm}}
+                    </div>
+                </div>
+                <hr>
+    
+                    <div class="col-md-12">
+                        <form class="col-md-12" (submit)='addComment()'>
+                            <div class="field-wrap">
+            <input [(ngModel)] = "comment" type="text" name="name" id="name" required autocomplete="off" class="form" placeholder="Add Comment" />
+          </div>
+                        </form>
+                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="equipe">
+                                <hr>
+                <div class="media" *ngFor ="let stud of teamstud">
+                    <a class="pull-left" [routerLink]="['/etudiant',stud.userfk]">
+                        <img class="media-object" src="images/community/{{stud.photo}}" alt="" width="60" height="60">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a [routerLink]="['/etudiant',stud.userfk]"> {{stud.nom}} {{comment.user.prenom}}</a>
+                                                    </h4>
+                       
+                    </div>
+                </div>
+                <hr>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-6 -->
+                <!-- /.col-lg-6 -->
+            
+    </div>
+    <!-- /.container -->
+
+    <div class="container">
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Your Website 2014</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <!-- /.container -->
+     

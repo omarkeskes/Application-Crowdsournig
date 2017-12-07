@@ -1,0 +1,96 @@
+<!--<form class="well" (ngSubmit)="authenticate($event)">
+      <div class="form-group">
+        <input type="text" [(ngModel)] = "username"  name="username" class="form-control" placeholder="username"> 
+        <input type="password" [(ngModel)] = "password"  name="password" class="form-control" placeholder="password">
+        <input type="submit" value="login now" >
+      </div>  
+</form>-->
+<div class="form">
+      
+      <ul class="tab-group">
+        <li class="tab active"><a (click)="changeTab()" dest="#signup">Sign Up</a></li>
+        <li class="tab"><a (click)="changeTab()" dest="#login">Log In</a></li>
+      </ul>
+      
+      <div class="tab-content">
+        <div id="signup">   
+          <h1>Sign Up for Free</h1>
+          
+          <form (submit)="register()">
+          
+          <div class="top-row">
+            <div class="field-wrap">
+              <label>
+                First Name<span class="req">*</span>
+              </label>
+              <input [(ngModel)] = "firstname" name="firstname"  type="text" (keyup)="change()" (blur)="change()" (focus)="change()" required autocomplete="off" />
+            </div>
+        
+            <div class="field-wrap">
+              <label>
+                Last Name<span class="req">*</span>
+              </label>
+              <input [(ngModel)] = "lastname" name="lastname" (keyup)="change()" (blur)="change()" (focus)="change()" type="text"required autocomplete="off"/>
+            </div>
+          </div>
+
+          <div class="field-wrap">
+            <label>
+              Email Address<span class="req">*</span>
+            </label>
+            <input [(ngModel)] = "registeremail" name="registeremail" (keyup)="change()" (blur)="change()" (focus)="change()" type="email"required autocomplete="off"/>
+          </div>
+          <div class="field-wrap">
+            <label>
+              As <span class="req">*</span>
+            </label>
+            <select [(ngModel)] = "as" name="as" required autocomplete="off">
+            <option value=""></option>
+            <option value="student" >Student</option>
+            <option value="enseignant">enseignant</option>
+            <option value="entreprise">Startup</option>
+            </select>
+          </div>
+          <div class="field-wrap">
+            <label>
+              Set A Password<span class="req">*</span>
+            </label>
+            <input [(ngModel)] = "passwordregister" name="passwordregister" (keyup)="change()" (blur)="change()" (focus)="change()" type="password"required autocomplete="off"/>
+          </div>
+          
+          <input type="submit" class="button button-block" value="Get Started" />
+          
+          </form>
+
+        </div>
+        
+        <div id="login">   
+          <h1>Welcome Back!</h1>
+          
+          <form (ngSubmit)="authenticate($event)" >
+          
+            <div class="field-wrap">
+            <label>
+              Email Address<span class="req">*</span>
+            </label>
+            <input [(ngModel)] = "username" name="username"(keyup)="change()" (blur)="change()" (focus)="change()" type="text" required autocomplete="off"/>
+          </div>
+          
+          <div class="field-wrap">
+            <label>
+              Password<span class="req">*</span>
+            </label>
+            <input [(ngModel)] = "password" name="password" (keyup)="change()" (blur)="change()" (focus)="change()" type="password"required autocomplete="off"/>
+          </div>
+          
+          <p class="forgot"><a href="#">Forgot Password?</a></p>
+          
+          <input type="submit" class="button button-block" value="Log In"/>
+          
+          </form>
+
+        </div>
+        
+      </div><!-- tab-content -->
+      
+</div> <!-- /form -->

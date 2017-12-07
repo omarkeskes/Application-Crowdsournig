@@ -1,0 +1,125 @@
+<div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Communauté
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li>
+                                <a><i class="fa fa-fw fa-group"></i>  Communauté</a>
+                            </li>
+                            <li class="active">
+                                {{title}}
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+<!-- Team Members -->
+        <div class="row" *ngIf='etudiantShow'>
+            <div class="col-lg-12">
+                <div class="input-group">
+                	<input type="hidden" name="search_param" value="name" id="search_param">		 
+	                <input type="text" [(ngModel)]='listFilter' class="form-control" name="q" placeholder="Cherchez des etudiants par nom, prenom, adresse, tel .." id="search_key" value="" />
+	                <span class="input-group-btn">
+			             <button class="btn btn-info" type="submit">  Search  </button>
+	                </span>
+             </div>
+            </div>
+            <div class="col-lg-12">
+                <h2 class="page-header">{{title}}</h2>
+            </div>
+            <div *ngFor='let community of communities | etudiantFilter:listFilter ' class="col-lg-4 col-sm-6 text-center">
+                <img class="img-circle img-responsive img-center" src="images/community/{{community.photo}}" alt="" width="150" height="150">
+                <h3 ><a [routerLink]="['/etudiant',community.userfk]">{{community.prenom}} {{community.nom}}</a>
+                    <small>{{community.classe}}</small>
+                </h3>
+            </div>
+        </div>
+        <div class="row" *ngIf='enseignantShow'>
+            <div class="col-lg-12">
+                <div class="input-group">
+                	<input type="hidden" name="search_param" value="name" id="search_param">		 
+	                <input type="text" [(ngModel)]='listFilter' class="form-control" name="q" placeholder="Cherchez des enseignants par nom, prenom, specialité .." id="search_key" value="" />
+	                <span class="input-group-btn">
+			             <button class="btn btn-info" type="submit">  Search  </button>
+	                </span>
+             </div>
+            </div>
+            <div class="col-lg-12">
+                <h2 class="page-header">{{title}}</h2>
+            </div>
+            <div *ngFor='let community of communities | enseignantFilter:listFilter ' class="col-lg-4 col-sm-6 text-center">
+                <img class="img-circle img-responsive img-center" src="images/community/{{community.photo}}" alt="" width="150" height="150">
+                <h3 ><a [routerLink]="['/enseignant',community.userfk]">{{community.prenom}} {{community.nom}}</a>
+                    <small>{{community.classe}}</small>
+                </h3>
+            </div>
+        </div>
+
+        <div class="row" *ngIf='entrepriseShow'>
+            <div class="col-lg-12">
+                <div class="input-group">
+                	<input type="hidden" name="search_param" value="name" id="search_param">		 
+	                <input type="text" [(ngModel)]='listFilter' class="form-control" name="q" placeholder="Cherchez des entreprise par nom,adresse .." id="search_key" value="">
+	                <span class="input-group-btn">
+			             <button class="btn btn-info" type="submit">  Search  </button>
+	                </span>
+             </div>
+            </div>
+            <div class="col-lg-12">
+                <h2 class="page-header">{{title}}</h2>
+            </div>
+            <div *ngFor='let entreprise of entreprises | entrepriseFilter:listFilter' class="col-md-4 text-center">
+                <div class="thumbnail">
+                    <img class="img-responsive" src="images/community/{{entreprise.photo}}" alt="">
+                    <div class="caption">
+                        <h3>{{entreprise.nom}}<br>
+                            <small>{{entreprise.adresse}}</small>
+                        </h3>
+                        <i class="fa fa-envelope"></i> {{entreprise.adresse}}
+                        <ul class="list-inline">
+                            <br>
+                            <li><a href="{{entreprise.facebook}}"><i class="fa fa-2x fa-facebook-square"></i></a>
+                            </li>
+                            <li><a href="{{entreprise.in}}"><i class="fa fa-2x fa-linkedin-square"></i></a>
+                            </li>
+                            <li><a href="{{entreprise.site}}"><i class="fa fa-2x fa-twitter-square"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+
+        <!-- Pagination -->
+        <div class="row text-center">
+            <div class="col-lg-12">
+                <ul class="pagination">
+                    <li>
+                        <a href="#">&laquo;</a>
+                    </li>
+                    <li class="active">
+                        <a href="#">1</a>
+                    </li>
+                    <li>
+                        <a href="#">&raquo;</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /.row -->
+        <!-- Footer -->
+<div class="container">
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Your Website 2014</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>

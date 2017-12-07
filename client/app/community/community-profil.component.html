@@ -1,0 +1,282 @@
+ <div class="row" *ngIf='community'>
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Profil
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li>
+                               <a > <i class="fa fa-fw fa-group"></i>  Communauté</a>
+                            </li>
+                            <li class="active">
+                               <a>{{etudiantShow ? 'Etudiants' : 'Enseignants'}}</a>
+                            </li>
+                            <li class="active">
+                               {{community.prenom}} {{community.nom}}
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+<div class="row" *ngIf='community'>
+    <div class="col-sm-3">
+        <div *ngIf='profilMail'>
+        <a  (click)='writeMail()' class="btn btn-primary btn-block btn-compose-email">Compose Email</a>
+        </div>
+
+        <h5 class="nav-email-subtitle">More</h5>
+        <ul class="nav nav-pills nav-stacked nav-email mb-20 rounded shadow">
+            <li>
+                <a ><i class="fa fa-certificate"></i> Idées</a>
+            </li>
+            <li>
+                <a >
+                    <i class="fa fa-folder-open"></i> Projets  <span class="label label-danger pull-right">3</span>
+                </a>
+            </li>
+        </ul><!-- /.nav -->
+    </div>
+    <div class="col-sm-9">
+        
+        <!-- resumt -->
+        <div class="panel panel-default">
+               <div class="panel-heading resume-heading">
+                  <div *ngIf='profil'>
+                   <button  *ngIf='!modif' id="but" type="button" (click)='editEtd()'><i class="fa fa-edit"></i> </button> 
+                 <div *ngIf='modif' >                               
+                    <button  type="button" (click)='checkEtd()'><i class="fa fa-check"></i> </button>
+                    <button  type="button" (click)='returnEtd()'><i class="fa fa-times"></i> </button> 
+                 </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-lg-12">
+                        <div class="col-xs-12 col-sm-4">
+                           <figure>
+                              <img class="img-circle img-responsive" alt="" src="images/community/{{community.photo}}">
+                           </figure>
+                           <div class="row">
+                              <div class="col-xs-12 social-btns">
+                                 <div class="col-xs-3 col-md-1 col-lg-1 social-btn-holder">
+                                    <a href="#" class="btn btn-social btn-block btn-google">
+                                    <i class="fa fa-google"></i> </a>
+                                 </div>
+                                 <div class="col-xs-3 col-md-1 col-lg-1 social-btn-holder">
+                                    <a href="#" class="btn btn-social btn-block btn-facebook">
+                                    <i class="fa fa-facebook"></i> </a>
+                                 </div>
+                                 <div class="col-xs-3 col-md-1 col-lg-1 social-btn-holder">
+                                    <a href="#" class="btn btn-social btn-block btn-twitter">
+                                    <i class="fa fa-twitter"></i> </a>
+                                 </div>
+                                 <div class="col-xs-3 col-md-1 col-lg-1 social-btn-holder">
+                                    <a href="#" class="btn btn-social btn-block btn-linkedin">
+                                    <i class="fa fa-linkedin"></i> </a>
+                                 </div>
+                                 <div class="col-xs-3 col-md-1 col-lg-1 social-btn-holder">
+                                    <a href="#" class="btn btn-social btn-block btn-github">
+                                    <i class="fa fa-github"></i> </a>
+                                 </div>
+                                 <div class="col-xs-3 col-md-1 col-lg-1 social-btn-holder">
+                                    <a href="#" class="btn btn-social btn-block btn-stackoverflow">
+                                    <i class="fa fa-stack-overflow"></i> </a>
+                                 </div>
+                              </div>
+                              
+                              
+                           </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-8" *ngIf='etudiantShow'>
+                           <ul class="list-group" *ngIf='!modif'>
+                              <li class="list-group-item">{{community.prenom}} {{community.nom}}</li>
+                              <li class="list-group-item" >{{community.classe}}</li>
+                              <li class="list-group-item" >{{community.adresse}} </li>
+                              <li class="list-group-item"><i class="fa fa-phone"></i> {{community.tel}}</li>
+                              <li class="list-group-item"><i class="fa fa-envelope"></i> {{email}}</li>
+                           </ul>
+                            <ul class="list-group" *ngIf='modif'>
+                              <li class="list-group-item"><input  [(ngModel)] = "community.nom" name="a" type="text" class="form-control" placeholder="Nom"></li>
+                              <li class="list-group-item" ><input  [(ngModel)] = "community.prenom" name="a" type="text" class="form-control" placeholder="Prenom"></li>
+                              <li class="list-group-item" ><input  [(ngModel)] = "community.classe" name="a" type="text" class="form-control" placeholder="Classe"></li>
+                              <li class="list-group-item"><input  [(ngModel)] = "community.tel" name="a" type="text" class="form-control" placeholder="Tel"></li>
+                              <li class="list-group-item"><input  [(ngModel)] = "community.adresse" name="a" type="text" class="form-control" placeholder="adresse"></li>
+                           </ul>
+                        </div>
+                        <div class="col-xs-12 col-sm-8" *ngIf='!etudiantShow'>
+                           <ul class="list-group" *ngIf='!modif'>
+                              <li class="list-group-item">{{community.prenom}} {{community.nom}}</li>
+                              <li class="list-group-item" >{{community.profession}}</li>
+                              <li class="list-group-item"><i class="fa fa-envelope"></i> {{email}}</li>
+                           </ul>
+                            <ul class="list-group" *ngIf='modif'>
+                              <li class="list-group-item"><input  [(ngModel)] = "community.nom" name="a" type="text" class="form-control" placeholder="Nom"></li>
+                              <li class="list-group-item" ><input  [(ngModel)] = "community.prenom" name="a" type="text" class="form-control" placeholder="Prenom"></li>
+                              <li class="list-group-item" ><input  [(ngModel)] = "community.profession" name="a" type="text" class="form-control" placeholder="Profession"></li>
+                            </ul>
+                        </div>
+                     </div>
+                  </div>
+                
+               </div>
+             
+               <div *ngIf='emailShow' class="bs-callout bs-callout-primary">
+                   <button type="button" (click)='returnMail()'><i class="fa fa-times pull-right"></i> </button>
+                   <textarea  [(ngModel)] = "mail" class="form-control" rows="4" ></textarea><br>
+                   <a (click)='sentMail()' class="btn btn-primary btn-compose-email pull-right">Envoyer</a>
+
+               </div>
+            
+               <div class="bs-callout bs-callout-danger"> 
+                  <div *ngIf='profil' class="pull-right">
+                    <button  *ngIf='!descriptionEdit'  type="button" (click)='editDescription()'><i class="fa fa-edit"></i> </button> 
+                    <button  *ngIf='descriptionEdit' type="button" (click)='checkDescription()'><i class="fa fa-check"></i> </button>
+                    <button  *ngIf='descriptionEdit' type="button" (click)='returnDescription()'><i class="fa fa-times"></i> </button>                                                   
+                  </div>
+                  <h4>Description</h4>
+                  <textarea *ngIf='descriptionEdit && profil' [(ngModel)] = "community.description" class="form-control" rows="4" >{{community.description}}</textarea>
+                  <p *ngIf='!descriptionEdit'>
+                      {{community.description}}
+                  </p>
+               </div>
+               <div class="bs-callout bs-callout-danger">
+                   <button class="pull-right" *ngIf='!experienceAdd && profil'  type="button" (click)='addExperience()'><i class="fa fa-plus-circle"></i> </button> 
+                  <h4>Experiences</h4>
+                <div *ngIf='profil'>  
+                 <div *ngIf='experienceAdd' >   
+                    <button type="button" (click)='checkExperience()'><i class="fa fa-check"></i> </button>
+                    <button type="button" (click)='returnExperience()'><i class="fa fa-times"></i> </button>                            
+                   <input  [(ngModel)] = "titreExp" name="a" type="text" class="form-control" placeholder="Titre"><br>
+                   <input [(ngModel)] = "dateDeb" name="b" type="text" class="form-control" placeholder="Date de debut"><br>
+                   <input [(ngModel)] = "dateFin"name="c" type="text"  class="form-control" placeholder="Date de fin"><br>
+                   <input [(ngModel)] = "des" name="d" type="text" class="form-control" placeholder="Description"><br>
+                 </div>
+                  </div>
+                  <ul class="list-group">
+                     <a *ngFor='let experience of experiences' class="list-group-item active-link" >
+                          <button *ngIf='profil' class="pull-right" type="button" (click)='deleteExperience(experience.id_exp)'><i class="fa fa-times"></i> </button>
+                        <h4 class="list-group-item-heading">
+                           {{experience.titre}}
+                        </h4>
+                          <ul>
+                           <li>
+                              Date de debut :{{experience.date_deb}}
+                           </li>
+                           <li>
+                               Date de fin :{{experience.date_fin}}
+                           </li>
+                        </ul><br>
+                        <p class="list-group-item-text">
+                            {{experience.description}}
+                        </p>
+                        <br>
+                     </a>
+                    
+                  </ul>
+
+               </div>
+               <div class="bs-callout bs-callout-danger" *ngIf='etudiantShow'>
+             <button *ngIf='!competenceAdd && profil'  class="pull-right"  type="button" (click)='addCompetence()'><i class="fa fa-plus-circle"></i> </button>
+              <h4>Language and Platform Skills</h4>
+                 <div *ngIf='profil'>
+                    
+                 <div *ngIf='competenceAdd' >                               
+                   <input  [(ngModel)] = "nom" name="aa" type="text" class="form-control" placeholder="Competence"><br>
+                   Niveau : <select [(ngModel)] = "niveau" name="rentabilite">
+                    <option selected value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            
+                    <button type="button" (click)='checkCompetence()'><i class="fa fa-check"></i> </button>
+                    <button type="button" (click)='returnCompetence()'><i class="fa fa-times"></i> </button> 
+                 </div>
+                  </div>
+                  <ul class="list-group">
+                     <a class="list-group-item inactive-link" href="#">
+                        <div *ngFor='let competence of competences' class="progress">
+                           <div data-placement="top" [style.width.%]="competence.niveau" 
+                              aria-valuemax="100" aria-valuemin="0" aria-valuenow="1" role="progressbar" class="progress-bar progress-bar-success">
+                              <span class="sr-only">30%</span>
+                              <span class="progress-type">{{competence.domaine}} </span>
+                           </div>
+                        </div>
+                        <div class="progress-meter">
+                           <div style="width: 25%;" class="meter meter-left"><span class="meter-text">I suck</span></div>
+                           <div style="width: 25%;" class="meter meter-left"><span class="meter-text">I know little</span></div>
+                           <div style="width: 30%;" class="meter meter-right"><span class="meter-text">I'm a guru</span></div>
+                           <div style="width: 20%;" class="meter meter-right"><span class="meter-text">I''m good</span></div>
+                        </div>
+                     </a>
+                  </ul>
+               </div>
+               <div class="bs-callout bs-callout-danger" *ngIf='etudiantShow'>
+                 <button *ngIf='!diplomeAdd && profil' class="pull-right" type="button" (click)='addDiplome()'><i class="fa fa-plus-circle"></i> </button>
+                 <h4>Education</h4>
+                <div *ngIf='profil'>
+               
+                 <div *ngIf='diplomeAdd' >                               
+                   <input  [(ngModel)] = "nomDip" name="a" type="text" class="form-control" placeholder="Titre"><br>
+                   <input [(ngModel)] = "annee" name="b" type="text" class="form-control" placeholder="Année"><br>
+                   <input [(ngModel)] = "ecole"name="c" type="text"  class="form-control" placeholder="Ecole"><br>
+            
+                    <button type="button" (click)='checkDiplome()'><i class="fa fa-check"></i> </button>
+                    <button type="button" (click)='returnDiplome()'><i class="fa fa-times"></i> </button> 
+                 </div>
+                  </div>
+                  <table class="table table-striped table-responsive ">
+                     <thead>
+                        <tr>
+                           <th>Degree</th>
+                           <th>Graduation Year</th>
+                           <th>Ecole</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr *ngFor='let diplome of diplomes'>
+                           <td>{{diplome.nom}}</td>
+                           <td>{{diplome.annee}}</td>
+                           <td> {{diplome.ecole}} </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+               <div class="bs-callout bs-callout-danger" *ngIf='enseignantShow'>
+                  <button *ngIf='!specAdd && profil'  class="pull-right" type="button" (click)='addSpec()'><i class="fa fa-plus-circle"></i> </button>
+                  <h4>Specilaités</h4>
+                <div *ngIf='profil'>
+                
+                 <div *ngIf='specAdd' >                               
+                   <input  [(ngModel)] = "nom" name="a" type="text" class="form-control" placeholder="Domaine"><br>
+                    <button type="button" (click)='checkSpec()'><i class="fa fa-check"></i> </button>
+                    <button type="button" (click)='returnSpec()'><i class="fa fa-times"></i> </button> 
+                 </div>
+                  </div>
+                        <ul class="list-group">
+                            <li *ngFor='let spec of specialites' class="list-group-item">{{spec.domaine}}</li>
+                        </ul>
+                    
+               </div>
+            </div>
+         </div>
+        <!-- resume -->
+
+    </div>
+        <!-- Footer -->
+<div class="container">
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Your Website 2014</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>

@@ -1,0 +1,31 @@
+{
+  "name": "CROWDSOURCINGPROJECT",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app.js"
+  },
+  "author": "Hamza Mensi et Omar Keskes",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.1.5",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.16.1",
+    "connect-flash": "^0.1.1",
+    "ejs": "^2.5.6",
+    "express": "^4.14.1",
+    "express-session": "^1.15.1",
+    "mongojs": "^2.4.0",
+    "mysql": "^2.13.0",
+    "nodemailer": "^3.1.8",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "properties-reader": "0.0.15",
+    "sendgrid": "^4.8.4",
+    "sendmail": "^1.1.1",
+    "sequelize": "^3.30.2",
+    "socket.io": "^1.7.3",
+    "wait.for": "^0.6.6"
+  }
+}

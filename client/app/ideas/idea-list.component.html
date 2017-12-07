@@ -1,0 +1,79 @@
+<div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Idées<small></small>
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li class="active">
+                                <a><i class="fa fa-fw fa-sun-o"></i> Idées</a>
+                            </li>
+                            <li class="active">
+                                Idées Proposées
+                            </li>
+                            <div class="pull-right">Classées par :    
+                                 <select class="form-control">
+                                                <option>Notes</option>
+                                                <option>Date</option>
+                                            </select></div>
+                        </ol>
+                        
+                    </div>
+                </div>
+                
+<div class="row" *ngIf="ideas ">
+
+                    <div  *ngFor='let idea of ideas ' class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                            <img *ngIf="idea.proposition.photo" class="img-responsive sizept" src="images/idea/{{idea.proposition.photo}}" >
+                            <img *ngIf="!idea.proposition.photo" class="img-responsive sizept" src="images/idea/idea.jpg" >
+                            <div class="caption">
+                                
+                                <h4><a [routerLink]="['/idea',idea.id]">{{idea.proposition.titre_prop}}</a>
+                                </h4>
+                                <p>Proposée par  <a target="_blank" [routerLink]="['/etudiant',idea.proprietaire.userfk]">{{idea.proprietaire.nom}} {{idea.proprietaire.prenom}}</a>.</p>
+                                <p>Créée le <a>{{idea.proposition.createdAt | date: 'dd/MM/yyyy'}}</a></p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right">{{idea.nombrenote}} notes</p>
+                                <p>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    
+                      
+
+                </div>
+                                                    <hr>
+
+                <!-- Pager -->
+                <ul class="pager">
+                    <li class="previous">
+                        <a href="#">&larr; Older</a>
+                    </li>
+                    <li class="next">
+                        <a href="#">Newer &rarr;</a>
+                    </li>
+                </ul>
+        <!-- Footer -->
+<div class="container">
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Your Website 2014</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>

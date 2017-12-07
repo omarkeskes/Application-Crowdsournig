@@ -1,0 +1,148 @@
+     
+        
+        <div id="wrapper">
+          <div class="shownavbar disable-enable">     
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">CrowdSourcing</a>
+            </div>
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+                    <ul class="dropdown-menu message-dropdown">
+
+                        <li class="message-footer">
+                            <a href="#">Read All New Messages</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown ">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
+                    <ul class="dropdown-menu alert-dropdown">
+                        <li *ngFor='let request of requeststoJOin; let i = index'>
+                            <a href="#">{{request.etudiant.nom}} {{request.etudiant.prenom}}</a> veut rejoindre ta proposition d'idée <a> {{request.proposition.titre_prop}} </a> <button value={{i}} (click)='accept($event)'> accepter</button> <button (click)="refus($event)" value={{i}} >refuser</button>
+                        </li>
+                        <li *ngFor='let request of notifications; let i = index'>
+                            <div *ngIf="request.type == 'cm'">
+                            <a href="#">{{request.user.nom}} {{request.user.prenom}}</a> a commente votre idée <a> {{request.proposition.titre_prop}} </a> 
+                            </div>
+                            <div *ngIf="request.type == 'js'">
+                            <a href="#">{{request.user.nom}} {{request.user.prenom}}</a> a rejoint <a> {{request.proposition}} </a> 
+                            </div>
+                            <div *ngIf="request.type == 'no'">
+                            <a href="#">{{request.user.nom}} {{request.user.prenom}}</a> a noté votre idée <a> {{request.proposition.titre_prop}} </a> 
+                            </div>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">View All</a>
+                        </li>
+                    </ul>
+                </li>
+                <li *ngIf="user" class="dropdown ">
+                    <a  href="#" class="dropdown-toggle menu" data-toggle="dropdown"><i class="fa fa-user"></i> {{user.data.prenom}} {{user.data.nom}}<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a *ngIf="student" [routerLink]="['/profil',user.login]"><i class="fa fa-fw fa-user"></i> Profile</a>
+                            <a *ngIf="!student" [routerLink]="['/mon_profil',user.login]"><i class="fa fa-fw fa-user"></i> Profile</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a (click)="logOut()"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse" id="sidebar-wrapper">
+                <ul class="nav navbar-nav side-nav">
+                    <li class="active">
+                        <a [routerLink]="['/']"><i class="fa fa-fw fa-home"></i> Home</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#community"><i class="fa fa-fw fa-group"></i> Communauté<i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="community" class="collapse">
+                            <li>
+                                <a [routerLink]="['/etudiants']">Etudiants</a>
+                            </li>
+                            <li>
+                                <a [routerLink]="['/enseignants']">Enseignants</a>
+                            </li>
+                             <li>
+                                <a [routerLink]="['/entreprises']">Entreprises</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#idee"><i class="fa fa-fw fa-sun-o"></i> Idées<i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="idee" class="collapse">
+                            <li *ngIf='student' >
+                                <a  [routerLink]="['/ideas']">Idées Proposées</a>
+                            </li>
+                            <li>
+                                <a [routerLink]="['/new']">Nouvelle Idée</a>
+                            </li>
+                            <li>
+                                <a [routerLink]="['/historique']">Historique</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#projet"><i class="fa fa-fw fa-sitemap"></i> Projets<i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="projet" class="collapse">
+                            <li>
+                                <a href="#">Projets Proposés</a>
+                            </li>
+                            <li *ngIf='!student'>
+                                <a  href="#">Nouveau Projet</a>
+                            </li>
+                                                        <li>
+                                <a href="#">PFE</a>
+                            </li>
+                                                        <li>
+                                <a href="#">PFA</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-briefcase"></i> Offres <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="demo" class="collapse">
+                            <li>
+                                <a href="#">Dropdown Item</a>
+                            </li>
+                            <li>
+                                <a href="#">Dropdown Item</a>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+          </div>      
+       
+        <div id="page-wrapper">
+            <div class="container-fluid">
+            <router-outlet></router-outlet>
+            </div>
+        </div>
+
+
+        </div>
+    

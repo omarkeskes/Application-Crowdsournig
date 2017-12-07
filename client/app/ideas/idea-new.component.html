@@ -1,0 +1,60 @@
+<div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Nouvelle Idée<small></small>
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li class="active">
+                                <a><i class="fa fa-fw fa-sun-o"></i> Idées</a>
+                            </li>
+                            <li class="active">
+                                Nouvelle Idée
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+<div class="row">
+<div class="inner contact">
+                <!-- Form Area -->
+                <div class="contact-form">
+                    <!-- Form -->
+                    
+                        <!-- Left Inputs -->
+                        <div class="col-xs-12 wow animated slideInLeft" data-wow-delay=".5s">
+                            <!-- Name -->
+                            <input [(ngModel)] = "titre" type="text" name="name" id="name" required="required" class="form" placeholder="Titre" />
+                       <!-- End Left Inputs -->
+                        <!-- Right Inputs -->
+                        
+                            <!-- Message -->
+                            <textarea [(ngModel)] = "des1" name="message" id="message" class="form textarea"  placeholder="Description"></textarea>
+                             <textarea [(ngModel)] = "des2" name="message" id="message" class="form textarea"  placeholder="Comment avez-vous eu l’idée ?!"></textarea>
+                              <textarea [(ngModel)] = "des3" name="message" id="message" class="form textarea"  placeholder="Vos produits et services "></textarea>
+                               <textarea [(ngModel)] = "des4" name="message" id="message" class="form textarea"  placeholder="Les technologies à utiliser"></textarea>
+                              <textarea [(ngModel)] = "des5" name="message" id="message" class="form textarea"  placeholder="Vos facteurs de réussite "></textarea>
+
+                                <textarea [(ngModel)] = "des6" name="message" id="message" class="form textarea"  placeholder="Vos facteurs différentiant et disruptifs par rapport à l’existant"></textarea>
+
+                        </div>
+                        <!-- Bottom Submit -->
+                        <div class="relative fullwidth col-xs-12">
+                            <!-- Send Button -->
+                            <button type="button" (click)='creer()' name="submit" class="form-btn semibold">Enregistrer</button> 
+                        </div><!-- End Bottom Submit -->
+                        <!-- Clear -->
+                        <div class="clear"></div>
+                    
+
+                    <!-- Your Mail Message -->
+                    <div class="mail-message-area">
+                        <!-- Message -->
+                        <div class="alert gray-bg mail-message not-visible-message">
+                            <strong>Thank You !</strong> Your email has been delivered.
+                        </div>
+                    </div>
+
+                </div><!-- End Contact Form Area -->
+            </div><!-- End Inner -->
+
+
+</div>
